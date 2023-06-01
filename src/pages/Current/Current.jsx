@@ -2,31 +2,39 @@ import React from "react";
 import { Card } from "../../components/Card/Card.jsx";
 import styles from "./Current.module.scss";
 import thermometer from "../../images/thermometer.png";
+import { useSelector } from "react-redux";
 
 export const Current = () => {
-  return (
+  const current = useSelector((state) => state.current);
+  const fetchedLocation = useSelector((state) => state.fetchedLocation);
+  console.log(current);
+
+  return fetchedLocation.name ? (
     <Card>
       <div className={styles.current}>
         <ul className={styles.info}>
-          <li>Last updated: </li>
-          <li>Wind: </li>
-          <li>Pressure: </li>
-          <li>Precip: </li>
-          <li>Humidity: </li>
-          <li>Cloud: </li>
-          <li>Gust: </li>
+          <li>Last updated: {current.last_updated}</li>
+          <li>Wind: {current.wind_kph} kph</li>
+          <li>Pressure: {current.pressure_mb} mb</li>
+          <li>Precip: {current.precip_mm} mm</li>
+          <li>Humidity: {current.humidity}%</li>
+          <li>Cloud: {current.cloud}%</li>
+          <li>Gust: {current.gust_kph} kph</li>
         </ul>
         <div className={styles.temperature}>
           <div className={styles.numbers}>
-            <p>Feels 9.5°</p>
-            <h2>11°</h2>
+            <p>Feels: {current.feelslike_c}°</p>
+            <h2>{Math.round(current.temp_c)}°</h2>
           </div>
           <div className={styles.thermometer}>
-            <span style={{ height: "100px" }} className={styles.scale}></span>
+            <span
+              style={{ height: `${+current.temp_c * 2.02 + 70}px` }}
+              className={styles.scale}
+            ></span>
             <img src={thermometer} alt="thermometer" />
           </div>
         </div>
       </div>
     </Card>
-  );
+  ) : null;
 };

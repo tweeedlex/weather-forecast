@@ -1,16 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Header.module.scss";
 import searchIcon from "../../images/icons/search.png";
+import { setLocation } from "../../store/slice";
+import { useDispatch } from "react-redux";
 
 export const Header = () => {
+  const [locationValue, setLocationValue] = useState("");
+  const dispatch = useDispatch();
+
   return (
     <header>
       <div className={"header__container " + styles.container}>
         <div className={styles.search}>
-          <input type="text" placeholder="Enter your city..." />
+          <input
+            type="text"
+            placeholder="Enter your city..."
+            value={locationValue}
+            onChange={(e) => setLocationValue(e.target.value)}
+          />
           <button className="search">
-            <img src={searchIcon} alt="Search" />
+            <img
+              src={searchIcon}
+              alt="Search"
+              onClick={() => dispatch(setLocation(locationValue))}
+            />
           </button>
         </div>
         <nav className={styles.navigation}>
