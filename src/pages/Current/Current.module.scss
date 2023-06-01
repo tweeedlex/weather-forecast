@@ -1,0 +1,33 @@
+@import "../../styles/mixins.scss";
+
+.current {
+  @include space-between();
+}
+
+.info {
+  @include column();
+}
+
+.temperature {
+  @include space-between();
+  align-items: flex-end;
+  .numbers {
+    text-align: end;
+  }
+  h2 {
+    font-size: 128px;
+  }
+  .thermometer {
+    position: relative;
+    height: 100%;
+  }
+}
+
+.scale {
+  width: 5px;
+  max-height: 170px;
+  background-color: #ed1919;
+  position: absolute;
+  bottom: 25px;
+  left: 21px;
+}

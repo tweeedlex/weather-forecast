@@ -1,0 +1,54 @@
+@import "../../styles/variables.scss";
+
+header {
+  height: $header-height;
+}
+
+.search {
+  width: 300px;
+  height: 40px;
+
+  background-color: #ffffff;
+  border-radius: 50px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 5px 20px;
+  filter: $shadow;
+
+  input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    background: none;
+    color: #000;
+
+    &::placeholder {
+      color: #222;
+    }
+  }
+
+  button {
+    position: relative;
+    top: 2px;
+  }
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  gap: 45px;
+}
+
+.links {
+  display: flex;
+  gap: 45px;
+}
+
+.link {
+  text-shadow: $text-shadow
+}

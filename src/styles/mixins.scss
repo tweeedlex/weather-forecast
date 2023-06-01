@@ -1,0 +1,11 @@
+@mixin column($gap: 10px) {
+  display: flex;
+  flex-direction: column;
+  gap: $gap;
+}
+
+@mixin space-between($gap: 10px) {
+  display: flex;
+  justify-content: space-between;
+  gap: $gap;
+}
