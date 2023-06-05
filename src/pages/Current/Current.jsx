@@ -7,13 +7,14 @@ import { useSelector } from "react-redux";
 export const Current = () => {
   const current = useSelector((state) => state.current);
   const fetchedLocation = useSelector((state) => state.fetchedLocation);
-  console.log(current);
+  console.log(current?.condition?.text, fetchedLocation.name);
 
   return fetchedLocation.name ? (
     <Card>
       <div className={styles.current}>
         <ul className={styles.info}>
           <li>Last updated: {current.last_updated}</li>
+          <li>{current.condition.text}</li>
           <li>Wind: {current.wind_kph} kph</li>
           <li>Pressure: {current.pressure_mb} mb</li>
           <li>Precip: {current.precip_mm} mm</li>

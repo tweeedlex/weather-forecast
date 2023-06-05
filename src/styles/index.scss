@@ -83,7 +83,7 @@ img {
 @import url(https://fonts.googleapis.com/css?family=Montserrat:regular,500);
 
 html {
-  background-color: #333;
+  background-color: $background-color;
 }
 
 * {
@@ -112,6 +112,21 @@ input {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  z-index: 1 !important;
+}
+
+* {
+  z-index: 2;
+}
+
+.filter {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: radial-gradient(transparent 50%, rgba(0, 0, 0, 0.3)),
+    rgba(0, 0, 0, 0.12);
 }
 
 main {
