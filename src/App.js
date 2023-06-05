@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router";
 import { Current } from "./pages/Current/Current.jsx";
-import { Forecast } from "./pages/Forecast.jsx";
+import { Forecast } from "./pages/Forecast/Forecast.jsx";
 import { useEffect, useState } from "react";
 import { History } from "./pages/History.jsx";
 import { Future } from "./pages/Future.jsx";
@@ -49,7 +49,9 @@ function App() {
         <div className="main__container">
           <h1>
             {fetchedLocation?.name
-              ? `${fetchedLocation.name}, ${fetchedLocation.region}, ${fetchedLocation.country}`
+              ? `${fetchedLocation.name}, ${
+                  fetchedLocation.region ? fetchedLocation.region + ", " : ""
+                } ${fetchedLocation.country}`
               : "No location yet"}
           </h1>
           <Routes>

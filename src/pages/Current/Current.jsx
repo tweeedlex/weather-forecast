@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 export const Current = () => {
   const current = useSelector((state) => state.current);
   const fetchedLocation = useSelector((state) => state.fetchedLocation);
-  console.log(current?.condition?.text, fetchedLocation.name);
 
   return fetchedLocation.name ? (
     <Card>
