@@ -52,7 +52,7 @@ function App() {
               ? `${fetchedLocation.name}, ${
                   fetchedLocation.region ? fetchedLocation.region + ", " : ""
                 } ${fetchedLocation.country}`
-              : "No location yet"}
+              : "No location yet. Please allow location access in your browser"}
           </h1>
           <Routes>
             <Route path="/" element={<Current />} />
