@@ -4,7 +4,7 @@ import { useEffect } from "react";
 export const useBackground = (current, setBackground) => {
   useEffect(() => {
     if (!current) return;
-    console.log(current);
+
     if (current?.is_day) {
       const image = images.find(
         (image) => image.day === current?.condition?.text

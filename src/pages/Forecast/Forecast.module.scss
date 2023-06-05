@@ -1,0 +1,17 @@
+.forecast {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.general {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+
+  span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+}

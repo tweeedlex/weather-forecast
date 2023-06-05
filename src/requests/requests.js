@@ -10,7 +10,7 @@ export const getAll = async (dispatch, location) => {
     );
     dispatch(setFetchedLocation(data.location));
     dispatch(setCurrent(data.current));
-    dispatch(setForecast(data.forecast));
+    dispatch(setForecast(data.forecast.forecastday[0]));
   } catch (e) {
     alert("error");
     console.log(e);
