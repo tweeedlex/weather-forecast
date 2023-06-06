@@ -12,6 +12,7 @@ import visibilityIcon from "../../images/icons/forecast/visibility.png";
 import humidityIcon from "../../images/icons/forecast/humidity.png";
 import rainIcon from "../../images/icons/forecast/rain.png";
 import snowflakeIcon from "../../images/icons/forecast/snowflake.png";
+import { Hour } from "../../components/Hour/Hour.jsx";
 
 export const Forecast = () => {
   const forecast = useSelector((state) => state.forecast);
@@ -19,7 +20,7 @@ export const Forecast = () => {
   console.log(forecast);
 
   return fetchedLocation.name ? (
-    <Card>
+    <Card isScroll={true}>
       <div className={styles.forecast}>
         <p>{forecast.date}</p>
         <p className={styles.general}>
@@ -41,7 +42,7 @@ export const Forecast = () => {
             {forecast.day.totalprecip_mm} mm
           </span>
           <span>
-            <img alt="" src={snowIcon} /> Total snow:{" "}
+            <img alt="" src={snowflakeIcon} /> Total snow:{" "}
             {forecast.day.totalsnow_cm} cm
           </span>
           <span>
@@ -61,7 +62,12 @@ export const Forecast = () => {
             {forecast.day.daily_chance_of_snow}%
           </span>
         </p>
-        <div className={styles.hourly}></div>
+        <hr />
+        <div className={styles.hourly}>
+          {forecast.hour.map((hour) => (
+            <Hour hour={hour} />
+          ))}
+        </div>
       </div>
     </Card>
   ) : null;

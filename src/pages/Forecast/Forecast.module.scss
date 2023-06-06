@@ -1,3 +1,5 @@
+@import "../../styles/mixins.scss";
+
 .forecast {
   display: flex;
   flex-direction: column;
@@ -5,13 +7,5 @@
 }
 
 .general {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-
-  span {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-  }
+  @include info;
 }
