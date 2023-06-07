@@ -9,6 +9,14 @@ export const Header = () => {
   const [locationValue, setLocationValue] = useState("");
   const dispatch = useDispatch();
 
+  const links = document.querySelectorAll("header a");
+  links.forEach((link) => {
+    link.addEventListener("click", () => {
+      links.forEach((link) => link.classList.remove(styles.active));
+      link.classList.add(styles.active);
+    });
+  });
+
   return (
     <header>
       <div className={"header__container " + styles.container}>

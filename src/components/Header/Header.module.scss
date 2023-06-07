@@ -50,5 +50,29 @@ header {
 }
 
 .link {
-  text-shadow: $text-shadow
+  text-shadow: $text-shadow;
+  font-weight: 400;
+
+  position: relative;
+  &::after {
+    content: "";
+    width: 0%;
+    left: 50%;
+    bottom: -5px;
+    transform: translateX(-50%);
+    position: absolute;
+    height: 2px;
+    background-color: #fff;
+    transition: width 0.3s ease;
+  }
+
+  &:hover {
+    &::after {
+      width: 100%;
+    }
+  }
+}
+
+.active {
+  font-weight: 900;
 }
