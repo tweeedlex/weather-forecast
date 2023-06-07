@@ -8,8 +8,8 @@ import { Header } from "./components/Header/Header.jsx";
 import { useSelector } from "react-redux";
 import { getAll } from "./requests/requests.js";
 import { useDispatch } from "react-redux";
-import { setLocation } from "./store/slice.js";
 import { useBackground } from "./hooks/useBackground.js";
+import { useLocation } from "./hooks/useLocation.js";
 
 function App() {
   const location = useSelector((state) => state.location);
@@ -18,21 +18,17 @@ function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     getAll(dispatch, location);
+    if (location) {
+      setIsLoading(false);
+    }
   }, [location]);
+
+  const [isLoading, setIsLoading] = useState(true);
 
   const [background, setBackground] = useState("");
 
   useBackground(current, setBackground);
-
-  useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        const lat = position.coords.latitude;
-        const lon = position.coords.longitude;
-        dispatch(setLocation(`${lat},${lon}`));
-      });
-    }
-  }, []);
+  useLocation(dispatch, setIsLoading);
 
   return (
     <div
@@ -41,27 +37,35 @@ function App() {
         background: `url("${background}") 0 0/cover no-repeat`,
       }}
     >
-      <div className="filter">
-        <div></div>
-      </div>
-      <Header />
-      <main>
-        <div className="main__container">
-          <h1>
-            {fetchedLocation?.name
-              ? `${fetchedLocation.name}, ${
-                  fetchedLocation.region ? fetchedLocation.region + ", " : ""
-                } ${fetchedLocation.country}`
-              : "No location yet. Please allow location access in your browser"}
-          </h1>
-          <Routes>
-            <Route path="/" element={<Current />} />
-            <Route path="/forecast" element={<Forecast />} />
-            <Route path="/history" element={<History />} />
-            <Route path="/future" element={<Future />} />
-          </Routes>
-        </div>
-      </main>
+      {isLoading ? (
+        <div className="loader">Make sure to allow location access</div>
+      ) : (
+        <>
+          <div className="filter">
+            <div></div>
+          </div>
+          <Header />
+          <main>
+            <div className="main__container">
+              <h1>
+                {fetchedLocation?.name
+                  ? `${fetchedLocation.name}, ${
+                      fetchedLocation.region
+                        ? fetchedLocation.region + ", "
+                        : ""
+                    } ${fetchedLocation.country}`
+                  : "No location yet. Please allow location access in your browser or search for a location."}
+              </h1>
+              <Routes>
+                <Route path="/" element={<Current />} />
+                <Route path="/forecast" element={<Forecast />} />
+                <Route path="/history" element={<History />} />
+                <Route path="/future" element={<Future />} />
+              </Routes>
+            </div>
+          </main>
+        </>
+      )}
     </div>
   );
 }

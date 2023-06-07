@@ -4,10 +4,15 @@ import styles from "./Current.module.scss";
 import thermometer from "../../images/thermometer.png";
 import { useSelector } from "react-redux";
 
+import windIcon from "../../images/icons/forecast/wind.png";
+import precipIcon from "../../images/icons/forecast/precip.png";
+import humidityIcon from "../../images/icons/forecast/humidity.png";
+import pressureIcon from "../../images/icons/forecast/pressure.png";
+import cloudIcon from "../../images/icons/forecast/cloud.png";
+
 export const Current = () => {
   const current = useSelector((state) => state.current);
   const fetchedLocation = useSelector((state) => state.fetchedLocation);
-  console.log(current);
 
   return fetchedLocation.name ? (
     <Card>
@@ -16,13 +21,25 @@ export const Current = () => {
           <li>Last updated: {current.last_updated}</li>
           <li>{current.condition.text}</li>
           <li>
-            Wind: {current.wind_kph} kph, {current.wind_dir}
+            <img src={windIcon} alt="" /> Wind: {current.wind_kph} kph,{" "}
+            {current.wind_dir}
           </li>
-          <li>Pressure: {current.pressure_mb} milibars</li>
-          <li>Precip: {current.precip_mm} mm</li>
-          <li>Humidity: {current.humidity}%</li>
-          <li>Cloud: {current.cloud}%</li>
-          <li>Gust: {current.gust_kph} kph</li>
+          <li>
+            <img src={pressureIcon} alt="" />
+            Pressure: {current.pressure_mb} milibars
+          </li>
+          <li>
+            <img src={precipIcon} alt="" />
+            Precip: {current.precip_mm} mm
+          </li>
+          <li>
+            <img src={humidityIcon} alt="" />
+            Humidity: {current.humidity}%
+          </li>
+          <li>
+            <img src={cloudIcon} alt="" />
+            Cloud: {current.cloud}%
+          </li>
         </ul>
         <div className={styles.temperature}>
           <div className={styles.numbers}>
