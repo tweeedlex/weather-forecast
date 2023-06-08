@@ -23,7 +23,15 @@ export const Hour = ({ hour }) => {
         <p>{hour.temp_c}°</p>
         <p>
           <img src={"https:" + hour.condition.icon} alt="" />{" "}
-          {hour.condition.text}
+          <span
+            className={
+              styles.condition +
+              " " +
+              (hour.condition.text.length >= 15 ? styles.small : "")
+            }
+          >
+            {hour.condition.text}
+          </span>
         </p>
         <p>{hour.wind_kph} kph</p>
         <p>
