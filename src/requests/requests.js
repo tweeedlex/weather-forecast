@@ -6,11 +6,11 @@ export const getAll = async (dispatch, location) => {
   if (!location) return;
   try {
     const { data } = await axios.get(
-      `${FORECAST_URL}?key=${KEY}&q=${location}`
+      `${FORECAST_URL}?key=${KEY}&q=${location}&days=7`
     );
     dispatch(setFetchedLocation(data.location));
     dispatch(setCurrent(data.current));
-    dispatch(setForecast(data.forecast.forecastday[0]));
+    dispatch(setForecast(data.forecast.forecastday));
   } catch (e) {
     alert("error");
     console.log(e);

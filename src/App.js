@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 import { getAll } from "./requests/requests.js";
 import { useDispatch } from "react-redux";
 import { useBackground } from "./hooks/useBackground.js";
-import { useLocation } from "./hooks/useLocation.js";
+import { useGeolocation } from "./hooks/useGeolocation.js";
 
 function App() {
   const location = useSelector((state) => state.location);
@@ -28,7 +28,7 @@ function App() {
   const [background, setBackground] = useState("");
 
   useBackground(current, setBackground);
-  useLocation(dispatch, setIsLoading);
+  useGeolocation(dispatch, setIsLoading);
 
   return (
     <div
@@ -54,7 +54,7 @@ function App() {
                         ? fetchedLocation.region + ", "
                         : ""
                     } ${fetchedLocation.country}`
-                  : "No location yet. Please allow location access in your browser or search for a location."}
+                  : "No location yet. Please allow location access in your browser or search for a location. Make sure to turn on GPS on your device."}
               </h1>
               <Routes>
                 <Route path="/" element={<Current />} />

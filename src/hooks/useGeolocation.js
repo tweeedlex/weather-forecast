@@ -14,7 +14,8 @@ function getGeolocationByIP(ipAddress, dispatch, setIsLoading) {
       setIsLoading(false);
     });
 }
-export const useLocation = (dispatch, setIsLoading) => {
+
+export const useGeolocation = (dispatch, setIsLoading) => {
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(

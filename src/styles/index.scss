@@ -92,7 +92,7 @@ html {
 
   font-family: "Nunito";
   font-style: normal;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 20px;
 }
 
@@ -168,6 +168,11 @@ h1 {
   line-height: 65px;
   margin-bottom: 50px;
   text-shadow: $text-shadow;
+}
+
+hr {
+  border: 1px solid #e1e1e1;
+  margin: 0 0 10px 0;
 }
 
 ::-webkit-scrollbar {

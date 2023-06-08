@@ -19,7 +19,10 @@ export const Current = () => {
       <div className={styles.current}>
         <ul className={styles.info}>
           <li>Last updated: {current.last_updated}</li>
-          <li>{current.condition.text}</li>
+          <li className={styles.condition}>
+            <img src={"https:" + current.condition.icon} width={48} alt="" />
+            {current.condition.text}
+          </li>
           <li>
             <img src={windIcon} alt="" /> Wind: {current.wind_kph} kph,{" "}
             {current.wind_dir}
